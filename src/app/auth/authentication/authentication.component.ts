@@ -42,7 +42,7 @@ export class AuthenticationComponent {
       return;
     }
 
-    if(!nomuser.match(/^[a-zA-Z]+$/)) {
+    if(nomuser.match(/^\d+$/)) {
       this.toastr.error('El nombre no debe de contener digitos', 'Mensaje', {
         timeOut: 1500,
         progressBar: true
@@ -50,7 +50,7 @@ export class AuthenticationComponent {
       return;
     }
 
-    if(!apeuser.match(/^[a-zA-Z]+$/)) {
+    if(apeuser.match(/^\d+$/)) {
       this.toastr.error('El apellido no debe de contener digitos', 'Mensaje', {
         timeOut: 1500,
         progressBar: true
@@ -146,7 +146,10 @@ export class AuthenticationComponent {
       this.router.navigate(["/dashboard"]);
     },
     error => {
-      this.toastr.error("Credenciales Incorrectas", "Mensaje");
+      this.toastr.error("Credenciales Incorrectas", "Mensaje", {
+        timeOut: 2000,
+        progressBar: true
+      });
       console.log(error);
     });
   }
