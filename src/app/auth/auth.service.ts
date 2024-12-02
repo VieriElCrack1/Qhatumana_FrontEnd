@@ -57,7 +57,7 @@ export class AuthService {
     localStorage.removeItem('refreshToken');
     setTimeout(() => {
       location.reload();
-    }, 100)
+    }, 3000)
     this.toastr.success("Sesión Cerrada", "Mensaje", {
       timeOut: 3000,
       progressBar: true
@@ -73,7 +73,7 @@ export class AuthService {
       tap((data : AuthResponse) => {
         if(data.status) {
           this.toastr.success(data.message, "Mensaje", {
-            timeOut: 1500,
+            timeOut: 3000,
             progressBar: true
           });
           if (data?.jwt) {
