@@ -1,13 +1,13 @@
-import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { DashboardService } from './dashboard.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterOutlet],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 export class DashboardComponent implements AfterViewInit ,OnInit {
 
   menu : any[] = [];
+  rutaPadre = "/dashboard";
 
   constructor(private authService : AuthService, private router : Router, private el: ElementRef,
               private dashService : DashboardService) {}
@@ -70,7 +71,7 @@ export class DashboardComponent implements AfterViewInit ,OnInit {
     });
   }
 
-  toggleSubmenu(index: any): void {
+  activarSubmenu(index: any): void {
     this.menu[index].isVisible = !this.menu[index].isVisible;
   }
 
@@ -88,6 +89,6 @@ export class DashboardComponent implements AfterViewInit ,OnInit {
 
   cerrarSesion() {
     this.authService.logout();
-    this.router.navigate(["/login"]);
+    this.router.navigate(["/auth"]);
   }
 }
