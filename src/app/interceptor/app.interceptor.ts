@@ -25,11 +25,11 @@ export const appInterceptor: HttpInterceptorFn = (req, next) => {
       if (error.status === 401) {
           return authService.refreshToken().pipe(
 
-            switchMap((newTokens: any) => {
+            switchMap((nuevoToken: any) => {
   
                 authRequest = req.clone({
                   setHeaders: {
-                    Authorization: `Bearer ${newTokens.jwt}`
+                    Authorization: `Bearer ${nuevoToken.jwt}`
                   }
                 });
               
@@ -37,16 +37,15 @@ export const appInterceptor: HttpInterceptorFn = (req, next) => {
   
             }), catchError(error => {
   
-              router.navigate(['/login']);
+              router.navigate(['/auth']);
               return throwError(() => error);
   
             })
   
           );
         }else {
-          authService.logout();
-          router.navigate(['/login']);
-          return throwError(() => new Error('Sesión cerrada'));
+          console.error('Error de autenticación:', error);
+          return throwError(() => new Error("" + error.error.message));
         }
         
     })

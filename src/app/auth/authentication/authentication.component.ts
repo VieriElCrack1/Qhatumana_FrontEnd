@@ -143,7 +143,7 @@ export class AuthenticationComponent {
 
     this.authService.login(this.authResponse).subscribe(x => {
       localStorage.setItem('token', x.jwt);
-      this.router.navigate(["/dashboard"]);
+      this.router.navigateByUrl("/dashboard/home");
     },
     error => {
       this.toastr.error("Credenciales Incorrectas", "Mensaje", {

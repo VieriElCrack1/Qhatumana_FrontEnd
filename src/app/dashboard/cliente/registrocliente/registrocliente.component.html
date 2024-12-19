@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="d-flex justify-content-center align-content-center">
+        <div class="col-md-6 p-4 border bg-white rounded-4">
+            <h3 class="text-center mb-4">REGISTRAR CLIENTE</h3>
+            <form class="needs-validation" novalidate>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="nomcliente" id="nomcliente" placeholder="" required [(ngModel)]="cliente.nomcliente">
+                    <label for="nomcliente">Nombre</label>
+                    <div class="invalid-feedback">
+                        Ingrese Su Nombre
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="apecliente" id="apecliente" placeholder="" required [(ngModel)]="cliente.apecliente">
+                    <label for="apecliente">Apellido</label>
+                    <div class="invalid-feedback">
+                        Ingrese Su Apellido
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="dnicliente" id="dnicliente" placeholder="" required [(ngModel)]="cliente.dni">
+                    <label for="dnicliente">DNI</label>
+                    <div class="invalid-feedback">
+                        Ingrese Su DNI
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="fonocliente" id="fonocliente" placeholder="" required [(ngModel)]="cliente.telefono">
+                    <label for="fonocliente">Telefono</label>
+                    <div class="invalid-feedback">
+                        Ingrese Su Telefono
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="emailcliente" id="emailcliente" placeholder="" required [(ngModel)]="cliente.email">
+                    <label for="emailcliente">Email</label>
+                    <div class="invalid-feedback">
+                        Ingrese Su Email
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-content-center">
+                    <button type="submit" (click)="guardarCliente()" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

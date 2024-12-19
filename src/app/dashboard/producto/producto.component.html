@@ -1,0 +1,29 @@
+<div class="container mb-4">
+    <h1 class="text-center">Listado de Productos</h1>
+    <table class="table table-hover mt-3">
+        <thead>
+            <tr>
+                <th>Nomprod</th>
+                <th>Descripcion</th>
+                <th>Categoria</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Imagen</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (p of productos; track $index) {
+                <tr>
+                    <td>{{p.nomproducto}}</td>
+                    <td>{{p.descrip}}</td>
+                    <td>{{p.nomcategoria}}</td>
+                    <td>{{p.precio}}</td>
+                    <td>{{p.stock}}</td>
+                    <td>
+                        <img src="{{p.urlproducto}}" width="35" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
