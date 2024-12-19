@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class DashboardComponent implements AfterViewInit ,OnInit {
 
+  usuario : any = {};
   menu : any[] = [];
   rutaPadre = "/dashboard";
 
@@ -78,9 +79,10 @@ export class DashboardComponent implements AfterViewInit ,OnInit {
   ngOnInit() : void {
     this.dashService.dashboardDatos().subscribe(
       x => {
-        this.menu = x.USUARIO;
+        this.usuario = x.USUARIO;
         this.menu = Object.values(x.ENLACES);
         console.log("Prueba Menu: ", this.menu);
+        console.log(this.usuario);
       }, error => {
         console.error('Error al cargar el menu:', error);
       }
