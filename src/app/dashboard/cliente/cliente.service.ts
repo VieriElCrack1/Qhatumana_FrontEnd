@@ -4,6 +4,7 @@ import { AppUtils } from '../../app.utils';
 import { ClienteCreateRequest } from './cliente-create-request';
 import { Observable } from 'rxjs';
 import { ClienteResponseLista } from './cliente.response.lista';
+import { ClienteUpdateRequest } from './cliente.update.request';
 
 const uri = AppUtils.URI_SPRING + "/cliente"
 
@@ -16,6 +17,14 @@ export class ClienteService {
 
   registrarCliente(cliente : ClienteCreateRequest) : Observable<any> {
     return this.http.post(`${uri}/registrar`, cliente);
+  }
+
+  modificarCliente(cliente : ClienteUpdateRequest) : Observable<any> {
+    return this.http.put<any>(`${uri}/modificar`,cliente);
+  }
+
+  buscarCliente(idcliente : any) : Observable<any> {
+    return this.http.get<any>(`${uri}/buscar/`+idcliente);
   }
 
   listadoClientes() : Observable<ClienteResponseLista[]> {

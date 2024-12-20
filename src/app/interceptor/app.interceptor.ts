@@ -45,6 +45,9 @@ export const appInterceptor: HttpInterceptorFn = (req, next) => {
           );
         }else {
           console.error('Error de autenticación:', error);
+          if (error.status === 500) {
+            console.error('Mensaje de error:', error.error.message);
+          }
           return throwError(() => new Error("" + error.error.message));
         }
         

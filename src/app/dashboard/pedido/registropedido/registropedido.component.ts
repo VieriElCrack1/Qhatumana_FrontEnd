@@ -145,7 +145,7 @@ export class RegistropedidoComponent implements OnInit{
       this.clientes = [...this.clientesOriginales];
     } else {
       this.clientes = this.clientesOriginales.filter(cliente => 
-        cliente.nomcliente?.toLowerCase().includes(nomcliente)
+        `${cliente.nomcliente} ${cliente.apecliente}`.toLowerCase().includes(nomcliente)
       );
     }
   }
