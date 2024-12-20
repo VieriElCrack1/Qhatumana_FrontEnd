@@ -1,0 +1,37 @@
+<div class="container">
+    <h3 class="text-center mt-2 mb-3">CONSULTA DE PAGO DE PEDIDO</h3>
+        <input type="text" name="nomcliente" id="cliente" class="form-control" #nomcliente
+                placeholder="Buscar cliente por nombre" (input)="buscarPagoPedido(nomcliente)" />
+
+    <table class="table table-hover mt-3">
+        <thead>
+            <tr>
+                <th hidden>ID</th>
+                <th>Cliente</th>
+                <th>Monto Pagado</th>
+                <th>Pago</th>
+                <th>Estado</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(listaPagoPedido.length > 0) {
+                @for (p of listaPagoPedido; track $index) {
+                    <tr>
+                        <td hidden>{{p.idpago}}</td>
+                        <td>{{p.cliente}}</td>
+                        <td>{{p.montopagado}}</td>
+                        <td>{{p.metodopago}}</td>
+                        <td>{{p.estadopago}}</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="checkbox{{p.idpago}}"
+                               [checked]="p.estadopago === 'Activo'" (change)="actualizarEstado(p, $event)">
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

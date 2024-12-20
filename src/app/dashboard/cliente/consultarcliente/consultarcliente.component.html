@@ -1,1 +1,76 @@
-<p>consultarcliente works!</p>
+<div class="container">
+    <h3 class="text-center mt-2 mb-3">CONSULTA DE CLIENTES</h3>
+        <input type="text" name="nomcliente" id="cliente" class="form-control" 
+                placeholder="Buscar cliente por nombre" (input)="buscarCliente($event)" />
+
+    <table class="table table-hover mt-3">
+        <thead>
+            <tr>
+                <th hidden>ID</th>
+                <th>Cliente</th>
+                <th>DNI</th>
+                <th>Telefono</th>
+                <th>Email</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(clientes.length > 0) {
+                @for (c of clientes; track $index) {
+                    <tr>
+                        <td hidden>{{c.idcliente}}</td>
+                        <td>{{c.nomcliente + " " + c.apecliente}}</td>
+                        <td>{{c.dni}}</td>
+                        <td>{{c.telefono}}</td>
+                        <td>{{c.email}}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm" (click)="cargarClienteParaModificar(c.idcliente!)" data-bs-toggle="modal" data-bs-target="#modalActualizar">Modificar</button>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<!--MODAL MODIFICAR-->
+<div class="modal fade" id="modalActualizar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modificar Cliente</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="nomcliente" [(ngModel)]="clienteUpdate.nomcliente" name="nomcliente" placeholder="">
+                <label for="nomcliente">Nombre</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="apecliente" [(ngModel)]="clienteUpdate.apecliente" name="apecliente" placeholder="">
+                <label for="apecliente">Apellido</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="dni" [(ngModel)]="clienteUpdate.dni" name="dni" placeholder="">
+                <label for="dni">DNI</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="telefono" [(ngModel)]="clienteUpdate.telefono" name="telefono" placeholder="">
+                <label for="telefono">Telefono</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="email" [(ngModel)]="clienteUpdate.email" name="email" placeholder="">
+                <label for="email">Email</label>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="estado" [(ngModel)]="clienteUpdate.estado" id="estado">
+                <label for="estado">Estado</label>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" (click)="modificarCliente()" class="btn btn-success">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>

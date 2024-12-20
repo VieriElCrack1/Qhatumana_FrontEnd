@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="d-flex justify-content-center align-content-center">
+        <div class="col-md-6 p-4 border bg-white rounded-4">
+            <h3 class="text-center mb-4">REGISTRAR PAGO PEDIDO</h3>
+            <form >
+                <div class="form-floating mb-3">
+                    <input type="hidden" value="{{idpedido}}" name="idpedido" [(ngModel)]="pagopedido.idpedido">
+                    <select class="form-select" name="idmetodopago" id="metodopago" [(ngModel)]="pagopedido.idmetodoPago">
+                        <option value="0">Seleccione</option>
+                        @for (metodo of metodoPago; track $index) {
+                            <option value="{{metodo.idmetodopago}}">{{metodo.nommetodopago}}</option>
+                        }
+                    </select>
+                    <label for="metodopago">Metodo Pago</label>
+                </div>
+                <div class="d-flex justify-content-center align-content-center">
+                    <button type="submit" (click)="registrarPagoPedido()" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
