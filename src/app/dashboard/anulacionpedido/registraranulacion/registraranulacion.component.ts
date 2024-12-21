@@ -5,11 +5,12 @@ import { AnularPedidoRequest } from '../anular.pedido.request';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { PedidoConsultaResponse } from '../../pedido/pedido.consulta.response';
+import { PercentPipe } from '@angular/common';
 
 @Component({
   selector: 'app-registraranulacion',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, PercentPipe],
   templateUrl: './registraranulacion.component.html',
   styleUrl: './registraranulacion.component.css'
 })

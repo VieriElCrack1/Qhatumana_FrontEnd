@@ -184,6 +184,26 @@ export class RegistropedidoComponent implements OnInit{
       return;
     }
 
+    const cantidadInvalida = this.pedido.detalles.some(detalle => !detalle.cantidad || detalle.cantidad <= 0);
+
+    if (cantidadInvalida) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Mensaje',
+        text: 'Todas las cantidades de los productos deben ser mayores a 0.',
+      });
+      return;
+    }
+
+    if(this.pedido.direccion === "") {
+      Swal.fire({
+        icon: 'error',
+        title: 'Mensaje',
+        text: 'Ingrese la dirección del pedido.',
+      });
+      return;
+    }
+
     this.pedidoService.registrarPedido(this.pedido).subscribe(x => {
       console.log('data', x);
       if(x.status === "ERROR") {
@@ -199,6 +219,8 @@ export class RegistropedidoComponent implements OnInit{
           text: x.message,
           timer: 3000,
           icon: "success"
+        }).then(() => {
+          window.location.reload();
         });
         this.pedido = { detalles: [], idusuario: undefined, idcliente: undefined, direccion: '', descuento: 0 };
         this.pedido = {};
