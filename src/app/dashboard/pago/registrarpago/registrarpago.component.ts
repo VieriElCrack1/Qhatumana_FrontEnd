@@ -9,11 +9,12 @@ import Swal from 'sweetalert2';
 import { FacturaService } from '../../factura/factura.service';
 import { FacturaPedidoRequest } from '../../factura/factura.pedido.request';
 import { PedidoConsultaResponse } from '../../pedido/pedido.consulta.response';
+import { PercentPipe } from '@angular/common';
 
 @Component({
   selector: 'app-registrar',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, PercentPipe],
   templateUrl: './registrarpago.component.html',
   styleUrl: './registrarpago.component.css'
 })
@@ -57,6 +58,7 @@ export class RegistrarComponent implements OnInit {
     if(!existe) {
       this.pedidoConsultaEstadoSeleccionado.push({...pedido});
       this.pagopedido.idpedido = pedido.idpedido;
+      this.idpedido = pedido.idpedido;
     }else {
       Swal.fire('Pedido ya agregado', 'Este pedido ya está en la lista', 'warning');
     }
@@ -108,8 +110,8 @@ export class RegistrarComponent implements OnInit {
         });
         this.pagopedido = {idpedido: 0, idmetodoPago: 0};
         
+        console.log('Valor de idpedido:', this.idpedido);
         this.facturaPedido.idpedido = this.idpedido;
-
         this.facturaService.registrarFactura(this.facturaPedido).subscribe(x => {
           if(x.status === "EXITO") {
             Swal.fire({
