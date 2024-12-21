@@ -2,8 +2,8 @@
 <div class="cardBox">
     <div class="card">
         <div>
-            <div class="numbers">1,504</div>
-            <div class="cardName">Daily Views</div>
+            <div class="numbers">804</div>
+            <div class="cardName">Visitas Diarias</div>
         </div>
 
         <div class="iconBx">
@@ -13,8 +13,8 @@
 
     <div class="card">
         <div>
-            <div class="numbers">80</div>
-            <div class="cardName">Sales</div>
+            <div class="numbers">24</div>
+            <div class="cardName">Productos</div>
         </div>
 
         <div class="iconBx">
@@ -24,8 +24,8 @@
 
     <div class="card">
         <div>
-            <div class="numbers">284</div>
-            <div class="cardName">Comments</div>
+            <div class="numbers">154</div>
+            <div class="cardName">Comentarios</div>
         </div>
 
         <div class="iconBx">
@@ -36,7 +36,7 @@
     <div class="card">
         <div>
             <div class="numbers">$7,842</div>
-            <div class="cardName">Earning</div>
+            <div class="cardName">Recolectado</div>
         </div>
 
         <div class="iconBx">
@@ -49,8 +49,8 @@
 <div class="details">
     <div class="recentOrders">
         <div class="cardHeader">
-            <h2>Recent Orders</h2>
-            <a href="#" class="btn">View All</a>
+            <h2>Productos</h2>
+            <a href="/dashboard/producto/listado" class="btn">Ver Todos</a>
         </div>
 
         <table>
@@ -58,149 +58,48 @@
                 <tr>
                     <td>Nombre</td>
                     <td>Precio</td>
-                    <td>Payment</td>
-                    <td>Status</td>
+                    <td>Stock</td>
+                    <td>Estado</td>
                 </tr>
             </thead>
 
             <tbody>
-                <tr>
-                    <td>Star Refrigerator</td>
-                    <td>$1200</td>
-                    <td>Paid</td>
-                    <td><span class="status delivered">Delivered</span></td>
-                </tr>
-
-                <tr>
-                    <td>Dell Laptop</td>
-                    <td>$110</td>
-                    <td>Due</td>
-                    <td><span class="status pending">Pending</span></td>
-                </tr>
-
-                <tr>
-                    <td>Apple Watch</td>
-                    <td>$1200</td>
-                    <td>Paid</td>
-                    <td><span class="status return">Return</span></td>
-                </tr>
-
-                <tr>
-                    <td>Addidas Shoes</td>
-                    <td>$620</td>
-                    <td>Due</td>
-                    <td><span class="status inProgress">In Progress</span></td>
-                </tr>
-
-                <tr>
-                    <td>Star Refrigerator</td>
-                    <td>$1200</td>
-                    <td>Paid</td>
-                    <td><span class="status delivered">Delivered</span></td>
-                </tr>
-
-                <tr>
-                    <td>Dell Laptop</td>
-                    <td>$110</td>
-                    <td>Due</td>
-                    <td><span class="status pending">Pending</span></td>
-                </tr>
-
-                <tr>
-                    <td>Apple Watch</td>
-                    <td>$1200</td>
-                    <td>Paid</td>
-                    <td><span class="status return">Return</span></td>
-                </tr>
-
-                <tr>
-                    <td>Addidas Shoes</td>
-                    <td>$620</td>
-                    <td>Due</td>
-                    <td><span class="status inProgress">In Progress</span></td>
-                </tr>
+                @for (p of listaProductos; track $index) {
+                    <tr>
+                        <td>{{p.nomproducto}}</td>
+                        <td>S/. {{p.precio | number: '1.2-2'}}</td>
+                        <td>{{p.stock}}</td>
+                        <td>
+                            @if (p.estado) {
+                                <span class="status delivered text-white">Activo</span>
+                            }@else {
+                                <span class="status return text-white">Inactivo</span>
+                            }
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
 
-    <!-- ================= New Customers ================ -->
+    <!-- ================= CLIENTES ================ -->
     <div class="recentCustomers">
-        <div class="cardHeader">
-            <h2>Recent Customers</h2>
+        <div class="cardHeaderCustomers">
+            <h2>Clientes</h2>
+
+            <table>
+                @for (c of listadoCliente; track $index) {
+                    <tr>
+                        <td width="60px">
+                            <div class="imgBx"><img src="customer02.jpg" alt=""></div>
+                        </td>
+                        <td>
+                            <h4>{{c.nomcliente + " " + c.apecliente}} <br> <span>{{c.telefono}}</span></h4>
+                        </td>
+                    </tr>
+                }
+            </table>
         </div>
-
-        <!-- <table>
-            <tr>
-                <td width="60px">
-                    <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>David <br> <span>Italy</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="60px">
-                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Amit <br> <span>India</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="60px">
-                    <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>David <br> <span>Italy</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="60px">
-                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Amit <br> <span>India</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="60px">
-                    <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>David <br> <span>Italy</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="60px">
-                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Amit <br> <span>India</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="60px">
-                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>David <br> <span>Italy</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="60px">
-                    <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Amit <br> <span>India</span></h4>
-                </td>
-            </tr>
-        </table> -->
+        
     </div>
 </div>

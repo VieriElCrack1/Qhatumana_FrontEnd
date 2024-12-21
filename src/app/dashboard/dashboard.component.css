@@ -62,7 +62,6 @@ body {
 }
 
 
-
 .navigation {
   position: fixed;
   width: 300px;
@@ -70,7 +69,17 @@ body {
   background: var(--blue);
   border-left: 10px solid var(--blue);
   transition: 0.5s;
-  overflow: hidden;
+  overflow-y: scroll; 
+}
+
+/* Ocultar la barra de desplazamiento */
+.navigation::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.navigation::-webkit-scrollbar-thumb {
+  background: transparent;
 }
 
 .navigation.active {

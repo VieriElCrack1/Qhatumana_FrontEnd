@@ -84,7 +84,7 @@ export class AuthenticationComponent {
 
     this.authService.registerUsuario(this.registerResponse).subscribe(x => {
       localStorage.setItem('token', x.jwt);
-      this.router.navigate(["/dashboard"]);
+      this.router.navigate(["/dashboard/home"]);
     },
     error => {
       this.toastr.error("Error Al Registrarse", "Mensaje");

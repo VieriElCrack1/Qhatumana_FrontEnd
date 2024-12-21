@@ -10,6 +10,10 @@ import { RegistrarComponent } from './dashboard/pago/registrarpago/registrarpago
 import { ConsultarclienteComponent } from './dashboard/cliente/consultarcliente/consultarcliente.component';
 import { ConsultarpedidoComponent } from './dashboard/pedido/consultarpedido/consultarpedido.component';
 import { ConsultarpagoComponent } from './dashboard/pago/consultarpago/consultarpago.component';
+import { ConsultarfacturaComponent } from './dashboard/factura/consultarfactura/consultarfactura.component';
+import { RegistraranulacionComponent } from './dashboard/anulacionpedido/registraranulacion/registraranulacion.component';
+import { ConsultaanulacionComponent } from './dashboard/anulacionpedido/consultaanulacion/consultaanulacion.component';
+import { UsuarioComponent } from './dashboard/usuario/usuario.component';
 
 export const routes: Routes = [
     {path: "auth", component: AuthenticationComponent},
@@ -17,13 +21,17 @@ export const routes: Routes = [
         canActivate: [authGuard],
         children: [
             {path: "home", component: HomeComponent},
+            {path: "perfil/usuario", component: UsuarioComponent},
             {path: "cliente/registrar", component: RegistroclienteComponent},
             {path: "cliente/consulta", component: ConsultarclienteComponent},
             {path: "pedido/registrar", component: RegistropedidoComponent},
             {path: "pedido/consulta", component: ConsultarpedidoComponent},
             {path: "producto/listado", component: ProductoComponent},
             {path: "pagopedido/registrar", component: RegistrarComponent},
-            {path: "pagopedido/consultar", component: ConsultarpagoComponent}
+            {path: "pagopedido/consultar", component: ConsultarpagoComponent},
+            {path: "factura/consulta", component: ConsultarfacturaComponent},
+            {path: "anulacionpedido/registrar", component: RegistraranulacionComponent},
+            {path: "anulacionpedido/consulta", component: ConsultaanulacionComponent}
         ]
     },
     {path: "", redirectTo: "auth", pathMatch: "full"},

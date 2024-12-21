@@ -1,1 +1,68 @@
-<p>usuario works!</p>
+<div class="container-fluid vh-60 d-flex mb-3" style="margin-top: -40px;">
+    <div class="row flex-grow-1">
+        <main class="col-md-15 d-flex justify-content-center align-items-center">
+            <div class="card shadow-lg p-4" style="width: 70%;">
+                <h3 class="text-center mb-2">Perfil Usuario</h3>
+                <div class="text-center mb-3 position-relative">
+                    <div class="position-relative d-inline-block">
+                        @if (urlImagen != null || urlImagen != "vacio") {
+                            <img 
+                            src="{{urlImagen}}" 
+                            alt="Foto de usuario" 
+                            class="rounded-circle mb-3" 
+                            style="width: 150px; height: 150px; object-fit: cover; cursor: pointer;" 
+                            id="fotoPerfil"
+                            >
+                        }@else {
+                            <img 
+                            src="perfilfoto.png" 
+                            alt="Foto de usuario" 
+                            class="rounded-circle mb-3" 
+                            style="width: 150px; height: 150px; object-fit: cover; cursor: pointer;" 
+                            id="fotoPerfil"
+                            >
+                        }
+                    </div>
+                    <input type="file" class="form-control d-none" id="file" name="file">
+                </div>
+                <form>
+                    <div class="row g-3 mb-3">
+                        <div class="form-floating col-md-6">
+                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" [(ngModel)]="usuarioModificarSinImagen.nombre">
+                            <label for="nombre" class="form-label" style="margin-left: 8px;">Nombre</label>
+                        </div>
+                        <div class="form-floating col-md-6">
+                            <input type="text" class="form-control" id="apellido" name="apellido" placeholder="" [(ngModel)]="usuarioModificarSinImagen.apeusuario">
+                            <label for="apellido" class="form-label" style="margin-left: 8px;">Apellido</label>
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="form-floating col-md-6">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="" [(ngModel)]="usuarioModificarSinImagen.email">
+                            <label for="email" class="form-label" style="margin-left: 8px;">Email</label>
+                        </div>
+                        <div class="form-floating col-md-6">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="" [(ngModel)]="usuarioModificarSinImagen.password">
+                            <label for="password" class="form-label" style="margin-left: 8px;">Password</label>
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-4">
+                        <div class="form-floating col-md-6">
+                            <input type="text" class="form-control" id="dni" name="dni" placeholder="" [(ngModel)]="usuarioModificarSinImagen.dni">
+                            <label for="dni" class="form-label" style="margin-left: 8px;">DNI</label>
+                        </div>
+                        @if (usuario?.rol?.nomrol) {
+                            <div class="form-floating col-md-6">
+                                <input type="text" class="form-control" id="rol" name="nomrol" placeholder="" [value]="nomrolusuario" readonly>
+                                <label for="rol" class="form-label" style="margin-left: 8px;">Rol</label>
+                            </div>
+                        }
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success" (click)="guardarusuariosinImagen()">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>

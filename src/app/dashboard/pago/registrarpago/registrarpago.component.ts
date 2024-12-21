@@ -8,6 +8,7 @@ import { MetodopagoService } from '../metodopago.service';
 import Swal from 'sweetalert2';
 import { FacturaService } from '../../factura/factura.service';
 import { FacturaPedidoRequest } from '../../factura/factura.pedido.request';
+import { PedidoConsultaResponse } from '../../pedido/pedido.consulta.response';
 
 @Component({
   selector: 'app-registrar',
@@ -31,19 +32,45 @@ export class RegistrarComponent implements OnInit {
     idpedido: 0
   }
 
+  pedidoConsultaEstado : PedidoConsultaResponse[] = [];
+  pedidoConsultaEstadoBuscado : PedidoConsultaResponse[] = [];
+  pedidoConsultaEstadoSeleccionado : PedidoConsultaResponse[] = [];
+
   constructor(private pagoPedidoService : PagoService, private pedidoService : PedidoService, 
     private metodoPagoService : MetodopagoService, private facturaService : FacturaService) {}
 
   ngOnInit(): void {
-    this.pedidoService.valorId().subscribe(x => {
-      this.idpedido = x;
-      this.pagopedido.idpedido = x;
+    this.pedidoService.consultarpedidoestado("",1).subscribe(x => {
+      this.pedidoConsultaEstado = [];
+      this.pedidoConsultaEstado = [...x];
+      this.pedidoConsultaEstadoBuscado = [...x];
     });
 
     this.metodoPagoService.listadoMetodoPago().subscribe(x => {
       this.metodoPago = x;
       console.log(x);
-    }); 
+    });
+  }
+
+  agregarPedido(pedido : any) {
+    const existe = this.pedidoConsultaEstadoSeleccionado.find(p => p.idpedido === pedido.idpedido);
+    if(!existe) {
+      this.pedidoConsultaEstadoSeleccionado.push({...pedido});
+      this.pagopedido.idpedido = pedido.idpedido;
+    }else {
+      Swal.fire('Pedido ya agregado', 'Este pedido ya está en la lista', 'warning');
+    }
+  }
+
+  buscarPedidoXCliente(event : any) {
+    const nomcliente = event?.target.value.toLowerCase();
+    if (nomcliente === '') {
+      this.pedidoConsultaEstado = [...this.pedidoConsultaEstadoBuscado];
+    } else {
+      this.pedidoConsultaEstado = this.pedidoConsultaEstadoBuscado.filter(pedido => 
+        `${pedido.cliente}`.toLowerCase().includes(nomcliente)
+      );
+    }
   }
 
   registrarPagoPedido() {
@@ -63,7 +90,7 @@ export class RegistrarComponent implements OnInit {
     if(this.pagopedido.idpedido == 0) {
       Swal.fire({
         title: "Mensaje",
-        text: "EL IDPEDIDO ESTA EN 0",
+        text: "SELECIONE EL PEDIDO",
         timer: 3000,
         icon: "error"
       });
