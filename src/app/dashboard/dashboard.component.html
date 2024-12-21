@@ -11,7 +11,7 @@
             </li>
 
             <li>
-                <a href="/dashboard">
+                <a href="/dashboard/home">
                     <span class="icon">
                         <ion-icon name="home-outline"></ion-icon>
                     </span>
@@ -20,7 +20,7 @@
             </li>
 
             <li>
-                <a href="/perfil">
+                <a href="/dashboard/perfil/usuario">
                     <span class="icon">
                         <ion-icon name="person-circle-outline"></ion-icon>
                     </span>
@@ -72,7 +72,7 @@
         @if(usuario != null) {
             <input value="{{usuario.idusuario}}" id="idusuario" hidden>
             <div class="user" style="width: 45px; height: 45px;">
-                <img src="{{usuario.urlfoto}}" alt="vacio">
+                <a href="/dashboard/perfil/usuario"><img src="{{usuario.urlfoto}}" alt="vacio"></a>
             </div>    
         }
         

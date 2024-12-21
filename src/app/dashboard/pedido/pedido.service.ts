@@ -31,4 +31,9 @@ export class PedidoService {
     const param = new HttpParams().set('nomcliente', nomcliente);
     return this.http.get<PedidoConsultaResponse[]>(`${uri}/consultarpedido`, { params: param });
   }
+
+  consultarpedidoestado(cliente : string, idestado : number) : Observable<PedidoConsultaResponse[]> {
+    let param = new HttpParams().set("cliente", cliente).set("idestado",idestado);
+    return this.http.get<PedidoConsultaResponse[]>(`${uri}/consultarpedidoestado`, {params : param});
+  }
 }

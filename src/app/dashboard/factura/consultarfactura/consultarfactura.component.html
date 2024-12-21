@@ -1,3 +1,47 @@
 <div class="container">
-    
+    <h3 class="text-center mt-2 mb-3">CONSULTA DE FACTURA DE PEDIDO</h3>
+        <input type="text" name="nomcliente" id="cliente" class="form-control" #cliente
+                placeholder="Buscar cliente por nombre" (input)="buscarFacturaPedido(cliente)" />
+
+    <table class="table table-hover mt-3">
+        <thead>
+            <tr>
+                <th hidden>ID</th>
+                <th>Cliente</th>
+                <th>Email Cliente</th>
+                <th>Direccion</th>
+                <th>Emisión</th>
+                <th>Total</th>
+                <th>Pago</th>
+                <th>Factura</th>
+                <th>Estado</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(listaFactura.length > 0) {
+                @for (f of listaFactura; track $index) {
+                    <tr>
+                        <td hidden>{{f.idfactura}}</td>
+                        <td>{{f.cliente}}</td>
+                        <td>{{f.emailcliente}}</td>
+                        <td>{{f.direccionpedido}}</td>
+                        <td>{{f.fechaemision | date:'yyyy-MM-dd'}}</td>
+                        <td>{{f.montotal}}</td>
+                        <td>{{f.nompago}}</td>
+                        <td>
+                            <a (click)="irNuevaVentana(f.urlfactura)" style="cursor: pointer;"><img src="factura.png" alt="nada" width="45"/></a>
+                        </td>
+                        <td>{{f.estadofactura ? 'Activo' : 'Inactivo'}}</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="checkbox{{f.idfactura}}"
+                               [checked]="f.estadofactura" (change)="actualizarEstado(f, $event)">
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
 </div>

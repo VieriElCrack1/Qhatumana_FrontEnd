@@ -6,4 +6,5 @@ export class ProductoResponse {
     stock ?: number;
     urlproducto ?: string;
     nomcategoria ?: string;
+    estado ?: boolean;
 }
