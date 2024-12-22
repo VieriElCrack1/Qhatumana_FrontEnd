@@ -1,0 +1,49 @@
+<div class="container">
+    <h3 class="text-center mt-3 mb-3">REPORTE DE PEDIDO SEMANAL</h3>
+    <div class="row align-items-end">
+        <div class="col-md-5 mb-3">
+            <div class="form-floating">
+                <input type="date" class="form-control" id="fechainicio" name="fechainicio" [(ngModel)]="fechainicio" [min]="minFecha" [max]="maxFecha" />
+                <label for="fechainicio">Fecha Inicio</label>
+            </div>
+        </div>
+        <div class="col-md-5 mb-3">
+            <div class="form-floating">
+                <input type="date" class="form-control" id="fechafin" name="fechafin" [(ngModel)]="fechafin" [min]="minFecha" [max]="maxFecha" />
+                <label for="fechafin">Fecha Fin</label>
+            </div>
+        </div>
+        <div class="col-md-2 mb-3">
+            <button class="btn btn-primary" style="height: 55px; width: 150px; font-size: 16px;" (click)="consultarReporte()">CONSULTAR</button>
+        </div>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Usuario</th>
+                <th>Descuento(%)</th>
+                <th>Total</th>
+                <th>Direccion</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (reportesemanal.length > 0) {
+                @for (r of reportesemanal; track $index) {
+                    <tr>
+                        <td>{{r.cliente}}</td>
+                        <td>{{r.usuario}}</td>
+                        <td>{{r.descuento | percent:'1.0-0'}}</td>
+                        <td>{{r.montototal}}</td>
+                        <td>{{r.direccion}}</td>
+                        <td>{{r.estado}}</td>
+                    </tr>
+                }
+            }@else {
+                <div class="ms-3 mt-3">No se encontro reporte semanales</div>
+            }
+        </tbody>
+    </table>
+</div>

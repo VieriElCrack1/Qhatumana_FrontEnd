@@ -14,6 +14,9 @@ import { ConsultarfacturaComponent } from './dashboard/factura/consultarfactura/
 import { RegistraranulacionComponent } from './dashboard/anulacionpedido/registraranulacion/registraranulacion.component';
 import { ConsultaanulacionComponent } from './dashboard/anulacionpedido/consultaanulacion/consultaanulacion.component';
 import { UsuarioComponent } from './dashboard/usuario/usuario.component';
+import { ReportediarioComponent } from './dashboard/reportes/reportediario/reportediario.component';
+import { ReportesemanalComponent } from './dashboard/reportes/reportesemanal/reportesemanal.component';
+import { ReportemensualComponent } from './dashboard/reportes/reportemensual/reportemensual.component';
 
 export const routes: Routes = [
     {path: "auth", component: AuthenticationComponent},
@@ -31,7 +34,10 @@ export const routes: Routes = [
             {path: "pagopedido/consultar", component: ConsultarpagoComponent},
             {path: "factura/consulta", component: ConsultarfacturaComponent},
             {path: "anulacionpedido/registrar", component: RegistraranulacionComponent},
-            {path: "anulacionpedido/consulta", component: ConsultaanulacionComponent}
+            {path: "anulacionpedido/consulta", component: ConsultaanulacionComponent},
+            {path: "reporte/diario", component: ReportediarioComponent},
+            {path: "reporte/semanal", component: ReportesemanalComponent},
+            {path: "reporte/mensual", component: ReportemensualComponent}
         ]
     },
     {path: "", redirectTo: "auth", pathMatch: "full"},

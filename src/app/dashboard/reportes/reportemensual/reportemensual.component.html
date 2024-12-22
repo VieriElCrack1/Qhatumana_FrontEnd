@@ -1,0 +1,43 @@
+<div class="container">
+    <h3 class="text-center mt-3 mb-3">REPORTE DE PEDIDO MENSUAL</h3>
+    <div class="col-sm-12 mb-3">
+        <div class="form-floating">
+            <select class="form-select" id="mesSeleccionado" name="mesSeleccionado" [(ngModel)]="mesSeleccionado" (change)="consultarReporte()">
+                <option value="0" selected>Seleccione un mes</option>
+                @for (mes of meses; track $index) {
+                    <option [value]="$index + 1">{{mes}}</option>
+                }
+            </select>
+            <label for="mesSeleccionado">Mes</label>
+        </div>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Usuario</th>
+                <th>Descuento(%)</th>
+                <th>Total</th>
+                <th>Direccion</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (reportemensual.length > 0) {
+                @for (r of reportemensual; track $index) {
+                    <tr>
+                        <td>{{r.cliente}}</td>
+                        <td>{{r.usuario}}</td>
+                        <td>{{r.descuento | percent:'1.0-0'}}</td>
+                        <td>{{r.montototal}}</td>
+                        <td>{{r.direccion}}</td>
+                        <td>{{r.estado}}</td>
+                    </tr>
+                }
+            }@else {
+                <div class="ms-3 mt-3">No se encontro reporte semanales</div>
+            }
+        </tbody>
+    </table>
+</div>
